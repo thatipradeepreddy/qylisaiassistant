@@ -1,7 +1,12 @@
-import { combineReducers } from "redux";
+// rootReducer.ts
+import { combineReducers } from 'redux';
+import userReducer from './userReducer.redducer';
 
-const rooReducer = combineReducers({
 
-})
+const rootReducer = combineReducers({
+  USER: userReducer
+});
 
-export default rooReducer;
+export type RootState = ReturnType<typeof rootReducer>;
+
+export default rootReducer;
