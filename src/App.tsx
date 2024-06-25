@@ -1,14 +1,15 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
-import Home from './screens/Home';
-import InitializationScreen from './screens/InitializationScreen';
-import Layout from './screens/Layout';
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import './App.css'
+import Home from './screens/Home'
+import InitializationScreen from './screens/InitializationScreen'
+import Layout from './screens/Layout'
+import { Login } from './screens/Login/Login'
 
 function App() {
 	return (
 		<BrowserRouter>
-      <div className="App">
+			<div className='App'>
 				<Routes>
 					<Route path='/' element={<InitializationScreen />} />
 					<Route path='/chat' element={<Layout />} />
