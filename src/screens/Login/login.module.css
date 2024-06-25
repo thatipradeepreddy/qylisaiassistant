@@ -58,14 +58,40 @@ label {
     box-sizing: border-box;
     border-radius: 4px;
     border: 1px solid #ccc;
+    padding-left: 26px;
+}
+
+.iconsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 15px;
+
+}
+
+.facebook {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
+
+.image {
+    margin-right: 20px;
+}
+
+.google {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
 
 .button {
     width: 100%;
     padding: 12px;
     border: none;
-    border-radius: 4px;
-    background-color: #28a745;
+    border-radius: 60px;
+    background-color: #ea5501;
     color: white;
     cursor: pointer;
     font-size: 16px;
@@ -73,7 +99,7 @@ label {
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #ea5501;
 }
 
 .eyeIcon {
@@ -84,9 +110,19 @@ button:hover {
     cursor: pointer;
 }
 
+.email {
+    position: absolute;
+    left: 6px;
+    top: 70%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6f96aa;
+}
+
 .links {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 30px;
 }
 
 a {

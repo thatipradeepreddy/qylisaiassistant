@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from './createUser.module.css'
-import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { FaEye, FaEyeSlash, FaLock, FaEnvelope , FaUser} from 'react-icons/fa'
 
 export interface UserProps {
 	username: string
@@ -48,6 +48,7 @@ export function CreateUser() {
 							}
 							required
 						/>
+						<span className={styles.email}>{<FaUser />}</span>
 					</div>
 					<div className={styles.inputGroup}>
 						<label htmlFor='email'>Email</label>
@@ -64,6 +65,7 @@ export function CreateUser() {
 							}
 							required
 						/>
+						<span className={styles.email}>{<FaEnvelope />}</span>
 					</div>
 					<div className={styles.inputGroup}>
 						<label htmlFor='password'>Password</label>

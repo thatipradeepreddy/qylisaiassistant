@@ -24,10 +24,13 @@ export function ForgotPassword() {
 								type='email'
 								placeholder='Email'
 								value={email}
-                                className={styles.input}
+								className={styles.input}
 								onChange={(e) => setEmail(e.target.value)}
 								required
 							/>
+							<span className={styles.email}>
+								{<FaEnvelope />}
+							</span>
 							<button type='submit' className={styles.button}>
 								<FaEnvelope /> Send Reset Email
 							</button>
@@ -35,7 +38,7 @@ export function ForgotPassword() {
 					</div>
 				</form>
 				<div className={styles.backToLogin}>
-					<a href='/login'>Back to Login</a>
+					<a href='/'>Back to Login</a>
 				</div>
 			</div>
 		</div>

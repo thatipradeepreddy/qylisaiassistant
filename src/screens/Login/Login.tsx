@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from './login.module.css'
-import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { FaEye, FaEyeSlash, FaLock, FaEnvelope } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
 export function Login() {
@@ -31,6 +31,7 @@ export function Login() {
 				<form onSubmit={handleSubmit}>
 					<div className={styles.inputGroup}>
 						<label htmlFor='email'>Email</label>
+						<span className={styles.email}>{<FaEnvelope />}</span>
 						<input
 							type='email'
 							placeholder='Email'
@@ -42,6 +43,7 @@ export function Login() {
 					</div>
 					<div className={styles.inputGroup}>
 						<label htmlFor='password'>Password</label>
+						<span className={styles.email}>{<FaLock />}</span>
 						<input
 							type={showPassword ? 'text' : 'password'}
 							placeholder='Password'
@@ -68,6 +70,20 @@ export function Login() {
 				<div className={styles.links}>
 					<a href='/forgot-password'>Forgot password?</a>
 					<a href='/create-account'>Create an account</a>
+				</div>
+
+				<label>or SignUp with</label>
+
+				<div className={styles.iconsContainer}>
+					<div className={styles.image}>
+						<img className={styles.facebook} src='./facebook.png' />
+					</div>
+					<div className={styles.image}>
+						<img className={styles.google} src='./google.png' />
+					</div>
+					<div className={styles.image}>
+						<img className={styles.google} src='./X.png' />
+					</div>
 				</div>
 			</div>
 		</div>
