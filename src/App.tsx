@@ -6,19 +6,18 @@ import InitializationScreen from './screens/InitializationScreen';
 import Layout from './screens/Layout';
 
 function App() {
-  return (
-    <BrowserRouter>
+	return (
+		<BrowserRouter>
       <div className="App">
-        <Routes>
-          <Route path="/" element={<InitializationScreen />} />
-          <Route path="/chat" element={<Layout />}/>
-            <Route path="/home" element={<Home />} />
-            {/* Add more routes for other components as needed */}
-          
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
+				<Routes>
+					<Route path='/' element={<InitializationScreen />} />
+					<Route path='/chat' element={<Layout />} />
+					<Route path='/home' element={<Home />} />
+					<Route path='/login' element={<Login />} />
+				</Routes>
+			</div>
+		</BrowserRouter>
+	)
 }
 
-export default App;
+export default App
