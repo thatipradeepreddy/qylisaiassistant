@@ -14,7 +14,10 @@ function App() {
 			<div className='App'>
 				<Routes>
 					<Route path='/' element={<Login />} />
-					<Route path='/initial-screen' element={<InitializationScreen />} />
+					<Route
+						path='/initial-screen'
+						element={<InitializationScreen />}
+					/>
 					<Route path='/chat' element={<Layout />} />
 					<Route path='/home' element={<Home />} />
 					<Route

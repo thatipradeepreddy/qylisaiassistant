@@ -92,7 +92,7 @@ export function CreateUser() {
 					</button>
 				</form>
 				<div className={styles.links}>
-					<a href='/login'>Back to login</a>
+					<a href='/'>Back to login</a>
 				</div>
 			</div>
 		</div>
