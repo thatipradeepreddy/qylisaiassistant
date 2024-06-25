@@ -2,13 +2,9 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar/Sidebar';
 import Menu from './Menu/Menu';
 import Home from './Home';
-import './Layout.css'
+import './Layout.css'; // Assuming the CSS file is named Layout.css
 
-interface LayoutProps {
-  // Define any props for the Layout component if needed
-}
-
-const Layout: React.FC<LayoutProps> = () => {
+const Layout: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   const toggleSidebar = () => {
@@ -16,11 +12,11 @@ const Layout: React.FC<LayoutProps> = () => {
   };
 
   return (
-    <div className="layout">
+    <div className={`layout ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
       <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
       <div className="content">
         <Menu onToggleSidebar={toggleSidebar} />
-       
+        <Home />
       </div>
     </div>
   );
