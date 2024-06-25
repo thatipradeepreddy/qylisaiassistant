@@ -5,6 +5,8 @@ import Home from './screens/Home'
 import InitializationScreen from './screens/InitializationScreen'
 import Layout from './screens/Layout'
 import { Login } from './screens/Login/Login'
+import { ForgotPassword } from './screens/ForgotPassword/ForgotPassword'
+import { CreateUser } from './screens/CreateUser/CreateUser'
 
 function App() {
 	return (
@@ -15,6 +17,11 @@ function App() {
 					<Route path='/chat' element={<Layout />} />
 					<Route path='/home' element={<Home />} />
 					<Route path='/login' element={<Login />} />
+					<Route
+						path='/forgot-password'
+						element={<ForgotPassword />}
+					/>
+					<Route path='/create-account' element={<CreateUser />} />
 				</Routes>
 			</div>
 		</BrowserRouter>

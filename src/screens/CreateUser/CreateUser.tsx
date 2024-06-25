@@ -1,10 +1,21 @@
 import React, { useState } from 'react'
-import styles from './login.module.css'
+import styles from './createUser.module.css'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
-export function Login() {
-	const [email, setEmail] = useState<string>('')
-	const [password, setPassword] = useState<string>('')
+export interface UserProps {
+	username: string
+	email: string
+	password: string
+}
+
+export const initialDefaults: UserProps = {
+	username: '',
+	email: '',
+	password: '',
+}
+
+export function CreateUser() {
+	const [userData, setUserData] = useState<UserProps>(initialDefaults)
 	const [showPassword, setShowPassword] = useState<boolean>(false)
 
 	const handleTogglePassword = () => {
@@ -13,23 +24,44 @@ export function Login() {
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
-		console.log('Email:', email)
-		console.log('Password:', password)
+		console.log('Email:', userData.email)
+		console.log('Password:', userData.password)
 	}
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.loginBox}>
-				<h2 className={styles.heading}>Login to Qylis Services</h2>
+				<h2 className={styles.heading}>Create An Account</h2>
 				<form onSubmit={handleSubmit}>
+					<div className={styles.inputGroup}>
+						<label htmlFor='username'>Username</label>
+						<input
+							type='text'
+							placeholder='Username'
+							value={userData.username}
+							className={styles.input}
+							onChange={(e) =>
+								setUserData({
+									...userData,
+									username: e.target.value,
+								})
+							}
+							required
+						/>
+					</div>
 					<div className={styles.inputGroup}>
 						<label htmlFor='email'>Email</label>
 						<input
 							type='email'
 							placeholder='Email'
-							value={email}
+							value={userData.email}
 							className={styles.input}
-							onChange={(e) => setEmail(e.target.value)}
+							onChange={(e) =>
+								setUserData({
+									...userData,
+									email: e.target.value,
+								})
+							}
 							required
 						/>
 					</div>
@@ -38,9 +70,14 @@ export function Login() {
 						<input
 							type={showPassword ? 'text' : 'password'}
 							placeholder='Password'
-							value={password}
+							value={userData.password}
 							className={styles.input}
-							onChange={(e) => setPassword(e.target.value)}
+							onChange={(e) =>
+								setUserData({
+									...userData,
+									password: e.target.value,
+								})
+							}
 							required
 						/>
 						<span
@@ -51,12 +88,11 @@ export function Login() {
 						</span>
 					</div>
 					<button className={styles.button} type='submit'>
-						Login
+						Submit
 					</button>
 				</form>
 				<div className={styles.links}>
-					<a href='/forgot-password'>Forgot password?</a>
-					<a href='/create-account'>Create an account</a>
+					<a href='/login'>Back to login</a>
 				</div>
 			</div>
 		</div>
