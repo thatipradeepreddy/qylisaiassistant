@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import styles from './login.module.css'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 export function Login() {
 	const [email, setEmail] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
 	const [showPassword, setShowPassword] = useState<boolean>(false)
+
+	const navigation = useNavigate()
 
 	const handleTogglePassword = () => {
 		setShowPassword(!showPassword)
@@ -15,6 +18,10 @@ export function Login() {
 		e.preventDefault()
 		console.log('Email:', email)
 		console.log('Password:', password)
+	}
+
+	const handleLogin = () => {
+		navigation('/initial-screen')
 	}
 
 	return (
@@ -50,7 +57,11 @@ export function Login() {
 							{showPassword ? <FaEyeSlash /> : <FaEye />}
 						</span>
 					</div>
-					<button className={styles.button} type='submit'>
+					<button
+						className={styles.button}
+						type='submit'
+						onClick={handleLogin}
+					>
 						Login
 					</button>
 				</form>

@@ -13,10 +13,10 @@ function App() {
 		<BrowserRouter>
 			<div className='App'>
 				<Routes>
-					<Route path='/' element={<InitializationScreen />} />
+					<Route path='/' element={<Login />} />
+					<Route path='/initial-screen' element={<InitializationScreen />} />
 					<Route path='/chat' element={<Layout />} />
 					<Route path='/home' element={<Home />} />
-					<Route path='/login' element={<Login />} />
 					<Route
 						path='/forgot-password'
 						element={<ForgotPassword />}
