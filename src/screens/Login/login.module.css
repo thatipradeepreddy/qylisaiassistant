@@ -58,7 +58,6 @@ label {
     box-sizing: border-box;
     border-radius: 4px;
     border: 1px solid #ccc;
-    padding-left: 26px;
 }
 
 .iconsContainer {
@@ -71,8 +70,8 @@ label {
 }
 
 .facebook {
-    width: 45px;
-    height: 45px;
+    width: 42px;
+    height: 42px;
     cursor: pointer;
 }
 
@@ -81,8 +80,8 @@ label {
 }
 
 .google {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
 }
 
@@ -96,23 +95,16 @@ label {
     cursor: pointer;
     font-size: 16px;
     margin-bottom: 20px;
+    margin-top: 15px;
 }
 
 button:hover {
     background-color: #ea5501;
 }
 
-.eyeIcon {
-    position: absolute;
-    right: 10px;
-    top: 70%;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
-
 .email {
     position: absolute;
-    left: 6px;
+    right: 10px;
     top: 70%;
     transform: translateY(-50%);
     cursor: pointer;

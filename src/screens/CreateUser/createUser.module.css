@@ -65,6 +65,7 @@ label {
     right: 10px;
     top: 70%;
     transform: translateY(-50%);
+    color: #6f96aa;
 }
 
 .button {
@@ -77,6 +78,7 @@ label {
     cursor: pointer;
     font-size: 16px;
     margin-bottom: 20px;
+    margin-top: 15px;
 }
 
 button:hover {
@@ -89,6 +91,7 @@ button:hover {
     top: 70%;
     transform: translateY(-50%);
     cursor: pointer;
+    color: #6f96aa;
 }
 
 .links {

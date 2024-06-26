@@ -43,7 +43,6 @@ export function Login() {
 					</div>
 					<div className={styles.inputGroup}>
 						<label htmlFor='password'>Password</label>
-						<span className={styles.email}>{<FaLock />}</span>
 						<input
 							type={showPassword ? 'text' : 'password'}
 							placeholder='Password'
@@ -53,7 +52,7 @@ export function Login() {
 							required
 						/>
 						<span
-							className={styles.eyeIcon}
+							className={styles.email}
 							onClick={handleTogglePassword}
 						>
 							{showPassword ? <FaEyeSlash /> : <FaEye />}
