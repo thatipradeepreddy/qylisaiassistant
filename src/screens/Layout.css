@@ -61,14 +61,12 @@
     padding: 20px;
 }
 
-.content.open {
-    margin-left: 55px;
+.content-open {
+    margin-left: 250px;
 }
 
-.content .menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.sidebar-closed .content {
+    margin-left: 55px;
 }
 
 /* Responsive styles */
@@ -85,7 +83,7 @@
         margin-left: 200px;
     }
   
-    .content.open {
+    .sidebar-closed .content {
         margin-left: 55px;
     }
 }
@@ -103,7 +101,7 @@
         margin-left: 150px;
     }
   
-    .content.open {
+    .sidebar-closed .content {
         margin-left: 55px;
     }
 }

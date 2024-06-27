@@ -1,29 +1,50 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useRef, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import styles from './home.module.css'
 
-function Home(props: any) {
-  const data = useSelector((state: any) => state.USER);
-  console.log(data, "data");
+export function Home(props: any) {
+	const data = useSelector((state: any) => state.USER)
+	const [inputData, setInputData] = useState('')
+	const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-  // If isAuthenticated is false or data is empty, return null or a loading indicator
-//   if (!data.isAuthenticated || !data.users || data.users.length === 0) {
-//     return <div>Loading...</div>;
-//   }
+	useEffect(() => {
+		if (textareaRef.current) {
+			textareaRef.current.style.height = 'auto'
+			textareaRef.current.style.height =
+				textareaRef.current.scrollHeight + 'px'
+		}
+	}, [inputData])
 
-  // Assuming data.users is an array of users, you can map over it to render each user
-  return (
-    <div>
-      <h1>Home</h1>
-      <p>Data from parent:</p>
-      <ul>
-        {data.users.map((user: any) => (
-          <li key={user.id}>
-            Name: {user.name}, Email: {user.email}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+	const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		setInputData(e.target.value)
+	}
+
+	const renderInput = () => {
+		return (
+			<div className={styles.inputContainer}>
+				<textarea
+					ref={textareaRef}
+					value={inputData}
+					onChange={handleInputChange}
+					className={styles.input}
+					rows={1}
+				/>
+			</div>
+		)
+	}
+
+	return (
+		<div className={styles.main}>
+			<h1>Home</h1>
+			<p>Data from parent:</p>
+			<div>
+				{data.users.map((user: any) => (
+					<div key={user.id}>
+						Name: {user.name}, Email: {user.email}
+					</div>
+				))}
+			</div>
+			{renderInput()}
+		</div>
+	)
 }
-
-export default Home;

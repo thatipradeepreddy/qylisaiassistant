@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
-import Home from './screens/Home'
+import { Home } from './screens/Home'
 import InitializationScreen from './screens/InitializationScreen'
 import Layout from './screens/Layout'
 import { Login } from './screens/Login/Login'
