@@ -17,9 +17,19 @@
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    border-radius: 4px;
+    border-radius: 8px;
     border: 1px solid #ccc;
     resize: none; /* Prevent default resizing, we'll handle it with JavaScript */
     max-height: 30vh; /* Set maximum height to 30% of the viewport height */
     overflow-y: auto; /* Allow vertical scrolling if content exceeds max height */
+    overflow: hidden;
+    min-height: 46px;
+}
+
+.iconButton {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
 }

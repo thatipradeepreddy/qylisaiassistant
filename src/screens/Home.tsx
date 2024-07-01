@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import styles from './home.module.css'
+import { SlArrowRightCircle } from "react-icons/sl";
+
 
 export function Home(props: any) {
 	const data = useSelector((state: any) => state.USER)
@@ -29,6 +31,9 @@ export function Home(props: any) {
 					className={styles.input}
 					rows={1}
 				/>
+				<span className={styles.iconButton}>
+					<SlArrowRightCircle style={{fontSize: 26}}/>
+				</span>
 			</div>
 		)
 	}
