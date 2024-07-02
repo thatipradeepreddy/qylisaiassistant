@@ -34,6 +34,7 @@ export function Home() {
 		null
 	)
 	const textareaRef = useRef<HTMLTextAreaElement>(null)
+	const messagesEndRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
 		if (textareaRef.current) {
@@ -42,6 +43,16 @@ export function Home() {
 				textareaRef.current.scrollHeight + 'px'
 		}
 	}, [inputData])
+
+	useEffect(() => {
+		scrollToBottom()
+	}, [messages])
+
+	const scrollToBottom = () => {
+		if (messagesEndRef.current) {
+			messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
+		}
+	}
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setInputData(e.target.value)
@@ -168,7 +179,12 @@ export function Home() {
 	return (
 		<div className={styles.main}>
 			<h1>Chat</h1>
-			<div className={styles.messagesContainer}>{renderMessages()}</div>
+			<div className={styles.messagesWrapper}>
+				<div className={styles.messagesContainer}>
+					{renderMessages()}
+					<div ref={messagesEndRef} />
+				</div>
+			</div>
 			{renderInput()}
 		</div>
 	)
