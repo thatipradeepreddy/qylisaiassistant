@@ -14,8 +14,8 @@ const InitializationScreen: React.FC = () => {
     <div className="initialization-screen">
       <h1>Welcome to Qylis Services</h1>
       <div className="box-container">
-        <Box title="Box 1" onClick={() => handleBoxClick('/chat')} />
-        <Box title="Box 2" onClick={() => handleBoxClick('')} />
+        <Box title="Chat Bot" onClick={() => handleBoxClick('/chat')} />
+        <Box title="Object Detection" onClick={() => handleBoxClick('/objectDetection')} />
         <Box title="Box 3" onClick={() => handleBoxClick('')} />
         <Box title="Box 4" onClick={() => handleBoxClick('')} />
       </div>

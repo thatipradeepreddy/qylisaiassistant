@@ -6,7 +6,7 @@
     background-size: cover;
     background-position: center;
     position: relative;
-    overflow: hidden;
+ 
 }
 
 .container::before {
@@ -58,6 +58,7 @@ label {
     box-sizing: border-box;
     border-radius: 4px;
     border: 1px solid #ccc;
+    overflow-x: auto;
 }
 
 .iconsContainer {

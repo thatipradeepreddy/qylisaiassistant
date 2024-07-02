@@ -7,6 +7,7 @@ import Layout from './screens/Layout'
 import { Login } from './screens/Login/Login'
 import { ForgotPassword } from './screens/ForgotPassword/ForgotPassword'
 import { CreateUser } from './screens/CreateUser/CreateUser'
+import ObjectDetection from './screens/ObjectDetection/ObjectDetection'
 
 function App() {
 	return (
@@ -25,6 +26,7 @@ function App() {
 						element={<ForgotPassword />}
 					/>
 					<Route path='/create-account' element={<CreateUser />} />
+					<Route path='/objectDetection' element={<ObjectDetection />} />
 				</Routes>
 			</div>
 		</BrowserRouter>
