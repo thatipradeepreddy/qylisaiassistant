@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { SlArrowRightCircle, SlPencil } from 'react-icons/sl'
-import data from '../screens/Data/data.json'
 import styles from './home.module.css'
 
 interface Response {
@@ -16,8 +15,6 @@ interface BotData {
 interface Data {
 	bot: BotData
 }
-
-const responses: Response[] = data.bot.responses
 
 type MessageType = 'user' | 'bot'
 
@@ -65,7 +62,7 @@ export function Home() {
 		}
 	}
 
-	const handleSend = () => {
+	const handleSend = async () => {
 		if (inputData.trim() === '') return
 
 		if (editingMessageId !== null) {
@@ -74,24 +71,100 @@ export function Home() {
 			)
 			setMessages(updatedMessages)
 			setEditingMessageId(null)
+
+			try {
+				const response = await fetch(
+					'http://192.168.68.68:5000/mistral',
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({
+							system_message: 'You are a helpful assistant',
+							user_message: inputData,
+							max_tokens: 100,
+						}),
+					}
+				)
+
+				if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`)
+				}
+
+				const data = await response.json()
+				console.log('Response data:', data) // Log the response data
+
+				const botResponse =
+					data.choices[0]?.text || "Sorry, I don't understand that."
+
+				const botMessage: Message = {
+					type: 'bot',
+					text: botResponse,
+					id: Date.now() + 1,
+				}
+
+				setMessages((prevMessages) => [...prevMessages, botMessage])
+			} catch (error) {
+				console.error('Error fetching bot response:', error)
+				const botMessage: Message = {
+					type: 'bot',
+					text: "Sorry, I don't understand that.",
+					id: Date.now() + 1,
+				}
+				setMessages((prevMessages) => [...prevMessages, botMessage])
+			}
 		} else {
 			const newMessage: Message = {
 				type: 'user',
 				text: inputData,
 				id: Date.now(),
 			}
-			const foundResponse = responses.find((r) =>
-				inputData.toLowerCase().includes(r.trigger.toLowerCase())
-			)
-			const botResponse = foundResponse
-				? foundResponse.response
-				: "Sorry, I don't understand that."
-			const botMessage: Message = {
-				type: 'bot',
-				text: botResponse,
-				id: Date.now() + 1,
+
+			setMessages((prevMessages) => [...prevMessages, newMessage])
+
+			try {
+				const response = await fetch(
+					'http://192.168.68.70:5000/mistral',
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({
+							system_message: 'You are a helpful assistant',
+							user_message: inputData,
+							max_tokens: 100,
+						}),
+					}
+				)
+
+				if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`)
+				}
+
+				const data = await response.json()
+				console.log('Response data:', data)
+
+				const botResponse =
+					data.choices[0]?.text || "Sorry, I don't understand that."
+
+				const botMessage: Message = {
+					type: 'bot',
+					text: botResponse,
+					id: Date.now() + 1,
+				}
+
+				setMessages((prevMessages) => [...prevMessages, botMessage])
+			} catch (error) {
+				console.error('Error fetching bot response:', error)
+				const botMessage: Message = {
+					type: 'bot',
+					text: "Sorry, I don't understand that.",
+					id: Date.now() + 1,
+				}
+				setMessages((prevMessages) => [...prevMessages, botMessage])
 			}
-			setMessages([...messages, newMessage, botMessage])
 		}
 
 		setInputData('')
@@ -189,3 +262,6 @@ export function Home() {
 		</div>
 	)
 }
+
+// <s>[INST] <<SYS>> You are a helpful assistant <</SYS>> hello [/INST] Hello! How can I assist you today?
+// I am getting the above response in the above way please remove the unwanted response
