@@ -65,13 +65,21 @@ export function Home() {
 	const handleSend = async () => {
 		if (inputData.trim() === '') return
 
+		const newMessage: Message = {
+			type: 'user',
+			text: inputData,
+			id: Date.now(),
+		}
+
+		setMessages((prevMessages) => [...prevMessages, newMessage])
+
 		if (editingMessageId !== null) {
 			const updatedMessages = messages.map((msg) =>
 				msg.id === editingMessageId ? { ...msg, text: inputData } : msg
 			)
 			setMessages(updatedMessages)
 			setEditingMessageId(null)
-
+		} else {
 			try {
 				const response = await fetch(
 					'http://192.168.68.68:5000/mistral',
@@ -93,65 +101,22 @@ export function Home() {
 				}
 
 				const data = await response.json()
-				console.log('Response data:', data) // Log the response data
-
-				const botResponse =
-					data.choices[0]?.text || "Sorry, I don't understand that."
-
-				const botMessage: Message = {
-					type: 'bot',
-					text: botResponse,
-					id: Date.now() + 1,
-				}
-
-				setMessages((prevMessages) => [...prevMessages, botMessage])
-			} catch (error) {
-				console.error('Error fetching bot response:', error)
-				const botMessage: Message = {
-					type: 'bot',
-					text: "Sorry, I don't understand that.",
-					id: Date.now() + 1,
-				}
-				setMessages((prevMessages) => [...prevMessages, botMessage])
-			}
-		} else {
-			const newMessage: Message = {
-				type: 'user',
-				text: inputData,
-				id: Date.now(),
-			}
-
-			setMessages((prevMessages) => [...prevMessages, newMessage])
-
-			try {
-				const response = await fetch(
-					'http://192.168.68.70:5000/mistral',
-					{
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json',
-						},
-						body: JSON.stringify({
-							system_message: 'You are a helpful assistant',
-							user_message: inputData,
-							max_tokens: 100,
-						}),
-					}
-				)
-
-				if (!response.ok) {
-					throw new Error(`HTTP error! Status: ${response.status}`)
-				}
-
-				const data = await response.json()
 				console.log('Response data:', data)
 
-				const botResponse =
-					data.choices[0]?.text || "Sorry, I don't understand that."
+				const rawBotResponse =
+					data.choices && data.choices.length > 0
+						? data.choices[0].text
+						: "Sorry, I don't understand that."
+
+				const cleanedBotResponse = rawBotResponse
+					.replace(/\[INST\][^]*?\[\/INST\]/g, '') // Remove [INST] tags and their content
+					.replace(/^\s*[\[\]>].*$/gm, '') // Remove any remaining system message and user message lines
+					.replace(/<[^>]*>/g, '') // Remove any remaining HTML tags
+					.trim()
 
 				const botMessage: Message = {
 					type: 'bot',
-					text: botResponse,
+					text: cleanedBotResponse,
 					id: Date.now() + 1,
 				}
 
@@ -262,6 +227,3 @@ export function Home() {
 		</div>
 	)
 }
-
-// <s>[INST] <<SYS>> You are a helpful assistant <</SYS>> hello [/INST] Hello! How can I assist you today?
-// I am getting the above response in the above way please remove the unwanted response
