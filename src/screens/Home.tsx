@@ -91,7 +91,7 @@ export function Home() {
 						body: JSON.stringify({
 							system_message: 'You are a helpful assistant',
 							user_message: inputData,
-							max_tokens: 100,
+							max_tokens: 1000,
 						}),
 					}
 				)
@@ -216,7 +216,7 @@ export function Home() {
 
 	return (
 		<div className={styles.main}>
-			<h1>Chat</h1>
+			<h1>Qylis AI Assistant</h1>
 			<div className={styles.messagesWrapper}>
 				<div className={styles.messagesContainer}>
 					{renderMessages()}
