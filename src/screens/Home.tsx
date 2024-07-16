@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { SlArrowRightCircle, SlPencil } from 'react-icons/sl'
+import { SlArrowRightCircle, SlPencil, SlMicrophone } from 'react-icons/sl'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import styles from './home.module.css'
 
 interface Response {
@@ -33,6 +34,8 @@ export function Home() {
 	const textareaRef = useRef<HTMLTextAreaElement>(null)
 	const messagesEndRef = useRef<HTMLDivElement>(null)
 
+	const { transcript, listening, resetTranscript } = useSpeechRecognition()
+
 	useEffect(() => {
 		if (textareaRef.current) {
 			textareaRef.current.style.height = 'auto'
@@ -44,6 +47,10 @@ export function Home() {
 	useEffect(() => {
 		scrollToBottom()
 	}, [messages])
+
+	useEffect(() => {
+		setInputData(transcript)
+	}, [transcript])
 
 	const scrollToBottom = () => {
 		if (messagesEndRef.current) {
@@ -60,6 +67,22 @@ export function Home() {
 			e.preventDefault()
 			handleSend()
 		}
+	}
+
+	const handleRecord = () => {
+		if (listening) {
+			SpeechRecognition.stopListening()
+		} else {
+			SpeechRecognition.startListening({ continuous: true, language: 'en-US' })
+		}
+	}
+
+	const renderMicIcon = () => {
+		return (
+			<div onClick={handleRecord}>
+				<SlMicrophone style={{ fontSize: 26, color: listening ? 'red' : 'black' }} />
+			</div>
+		)
 	}
 
 	const handleSend = async () => {
@@ -82,7 +105,7 @@ export function Home() {
 		} else {
 			try {
 				const response = await fetch(
-					'http://192.168.68.68:5000/mistral',
+					'http://192.168.68.62:5000/mistral',
 					{
 						method: 'POST',
 						headers: {
@@ -133,6 +156,7 @@ export function Home() {
 		}
 
 		setInputData('')
+		resetTranscript()
 	}
 
 	const handleEdit = (id: number) => {
@@ -190,6 +214,7 @@ export function Home() {
 					className={styles.input}
 					rows={1}
 				/>
+
 				{editingMessageId !== null ? (
 					<div className={styles.editActions}>
 						<button
@@ -206,9 +231,14 @@ export function Home() {
 						</button>
 					</div>
 				) : (
-					<span className={styles.iconButton} onClick={handleSend}>
-						<SlArrowRightCircle style={{ fontSize: 26 }} />
-					</span>
+					<>
+						<span className={styles.micIcon}>
+							{renderMicIcon()}
+						</span>
+						<span className={styles.iconButton} onClick={handleSend}>
+							<SlArrowRightCircle style={{ fontSize: 26 }} />
+						</span>
+					</>
 				)}
 			</div>
 		)
