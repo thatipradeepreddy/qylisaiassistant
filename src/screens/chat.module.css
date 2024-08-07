@@ -104,6 +104,27 @@
     color: #333;
 }
 
+/* Styles for the h1 heading */
+h1 {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(90deg, #3498db, #8e44ad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+
 .iconButton {
     margin-left: 10px;
     cursor: pointer;

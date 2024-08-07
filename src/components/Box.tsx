@@ -1,18 +1,17 @@
-import React from 'react';
-import './Box.css';
+import React from "react"
+import "./Box.css"
 
 interface BoxProps {
-  title: string;
-  onClick: () => void; // Define the type of the onClick prop
+    title: string
+    onClick: () => void
 }
 
 const Box: React.FC<BoxProps> = ({ title, onClick }) => {
-  return (
-    <div className="box" onClick={onClick}>
-      <h2>{title}</h2>
-      {/* Add any content you want for each box */}
-    </div>
-  );
-};
+    return (
+        <div className="box" onClick={onClick}>
+            <h2>{title}</h2>
+        </div>
+    )
+}
 
-export default Box;
+export default Box

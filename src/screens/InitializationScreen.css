@@ -3,15 +3,33 @@
     width: 200px;
     height: 200px;
     background-color: #f0f0f0;
-    margin: 10px;
+    margin: 15px;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
+  .headding {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #3498db;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(45deg, #3498db, #8e44ad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
   .box-container{
     display: flex;
     justify-content: center;
+    margin-top: 50px;
   }
   
   h2 {
