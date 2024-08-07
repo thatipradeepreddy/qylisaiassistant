@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react"
-import { SlArrowRightCircle, SlPencil, SlMicrophone } from "react-icons/sl"
+import { SlArrowRightCircle, SlPencil, SlMicrophone, SlSpeech } from "react-icons/sl"
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition"
 import styles from "./chat.module.css"
 
@@ -164,10 +164,20 @@ export function Chat() {
         setEditingMessageId(null)
     }
 
+    const speak = (text: string) => {
+        const utterance = new SpeechSynthesisUtterance(text)
+        window.speechSynthesis.speak(utterance)
+    }
+
     const renderMessages = () => {
         return messages.map((msg) => (
             <div key={msg.id} className={msg.type === "user" ? styles.userMessage : styles.botMessage}>
                 {msg.text}
+                {msg.type === "bot" && (
+                    <span className={styles.speakerIcon} onClick={() => speak(msg.text)}>
+                        <SlSpeech style={{ fontSize: 20, color: "black", marginLeft: 10 }} />
+                    </span>
+                )}
                 {msg.type === "user" && (
                     <span
                         className={styles.editIcon}
