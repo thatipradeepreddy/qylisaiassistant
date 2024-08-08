@@ -4,6 +4,7 @@ import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognitio
 import { HiOutlineSpeakerWave } from "react-icons/hi2"
 import styles from "./chat.module.css"
 import { MdAttachFile } from "react-icons/md"
+import { AiOutlineLoading3Quarters } from "react-icons/ai"
 
 interface Response {
     trigger: string
@@ -26,6 +27,7 @@ interface Message {
     text: string
     id: number
     fileUrl?: string
+    isLoading?: boolean // Add isLoading flag to Message interface
 }
 
 export function Chat() {
@@ -34,6 +36,7 @@ export function Chat() {
     const [editingMessageId, setEditingMessageId] = useState<number | null>(null)
     const [speakingMessageId, setSpeakingMessageId] = useState<number | null>(null)
     const [fileInputKey, setFileInputKey] = useState<number>(Date.now())
+    const [isLoading, setIsLoading] = useState<boolean>(false) // New state for loading
     const textareaRef = useRef<HTMLTextAreaElement>(null)
     const messagesEndRef = useRef<HTMLDivElement>(null)
     const fileInputRef = useRef<HTMLInputElement>(null)
@@ -125,6 +128,7 @@ export function Chat() {
             setMessages(updatedMessages)
             setEditingMessageId(null)
         } else {
+            setIsLoading(true) // Set loading state to true
             try {
                 const response = await fetch("", {
                     method: "POST",
@@ -168,6 +172,8 @@ export function Chat() {
                     id: Date.now() + 1,
                 }
                 setMessages((prevMessages) => [...prevMessages, botMessage])
+            } finally {
+                setIsLoading(false) // Set loading state to false
             }
         }
 
@@ -199,29 +205,35 @@ export function Chat() {
     const renderMessages = () => {
         return messages.map((msg) => (
             <div key={msg.id} className={msg.type === "user" ? styles.userMessage : styles.botMessage}>
-                {msg.text}
-                {msg.fileUrl && <img src={msg.fileUrl} alt="" className={styles.uploadedFile} />}
-                {msg.type === "bot" && (
-                    <span className={styles.speakerIcon} onClick={() => speak(msg.text, msg.id)}>
-                        <HiOutlineSpeakerWave />
-                    </span>
-                )}
-                {msg.type === "user" && (
-                    <span
-                        className={styles.editIcon}
-                        onClick={() => handleEdit(msg.id)}
-                        style={{
-                            display: editingMessageId !== msg.id ? "inline" : "none",
-                        }}
-                    >
-                        <SlPencil
-                            style={{
-                                fontSize: 16,
-                                color: "lightslategrey",
-                                marginBottom: -3.5,
-                            }}
-                        />
-                    </span>
+                {msg.isLoading ? (
+                    <AiOutlineLoading3Quarters style={{ fontSize: 24, color: "gray" }} />
+                ) : (
+                    <>
+                        {msg.text}
+                        {msg.fileUrl && <img src={msg.fileUrl} alt="" className={styles.uploadedFile} />}
+                        {msg.type === "bot" && (
+                            <span className={styles.speakerIcon} onClick={() => speak(msg.text, msg.id)}>
+                                <HiOutlineSpeakerWave />
+                            </span>
+                        )}
+                        {msg.type === "user" && (
+                            <span
+                                className={styles.editIcon}
+                                onClick={() => handleEdit(msg.id)}
+                                style={{
+                                    display: editingMessageId !== msg.id ? "inline" : "none",
+                                }}
+                            >
+                                <SlPencil
+                                    style={{
+                                        fontSize: 16,
+                                        color: "lightslategrey",
+                                        marginBottom: -3.5,
+                                    }}
+                                />
+                            </span>
+                        )}
+                    </>
                 )}
             </div>
         ))
@@ -283,6 +295,7 @@ export function Chat() {
                 </div>
             </div>
             {renderInput()}
+            {isLoading && <AiOutlineLoading3Quarters style={{ fontSize: 24, color: "gray" }} />}
         </div>
     )
 }
