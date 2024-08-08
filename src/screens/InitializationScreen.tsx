@@ -28,8 +28,8 @@ const InitializationScreen: React.FC = () => {
                     title="Object Detection"
                     onClick={() => handleBoxClick("/objectDetection")}
                 />
-                {/* <Box title="Box 3" onClick={() => handleBoxClick("")} />
-                <Box title="Box 4" onClick={() => handleBoxClick("")} /> */}
+                <Box title="Coming Soon" onClick={() => handleBoxClick("")} />
+                {/* <Box title="Box 4" onClick={() => handleBoxClick("")} /> */}
             </div>
         </div>
     )

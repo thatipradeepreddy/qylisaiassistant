@@ -126,7 +126,7 @@ export function Chat() {
             setEditingMessageId(null)
         } else {
             try {
-                const response = await fetch("", {
+                const response = await fetch("http://192.168.68.80:5000/llama", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -134,7 +134,7 @@ export function Chat() {
                     body: JSON.stringify({
                         system_message: "You are a helpful assistant",
                         user_message: inputData,
-                        max_tokens: 1000,
+                        max_tokens: 200,
                     }),
                 })
 
@@ -143,6 +143,7 @@ export function Chat() {
                 }
 
                 const data = await response.json()
+                console.log("API Response Data:", data) // Log the response data
 
                 const rawBotResponse =
                     data.choices && data.choices.length > 0 ? data.choices[0].text : "Sorry, I don't understand that."
