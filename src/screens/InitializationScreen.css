@@ -1,71 +1,101 @@
-/* Box styles */
+/* Existing Box styles */
 .box {
-    width: 200px;
-    height: 200px;
-    background-color: #f0f0f0;
-    margin: 15px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+  width: 200px;
+  height: 200px;
+  background-color: #f0f0f0;
+  margin: 15px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-  .headding {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 3rem;
-    font-weight: bold;
-    color: #3498db;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(45deg, #3498db, #8e44ad);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.headding {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #3498db;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(45deg, #3498db, #8e44ad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.box-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.header-container {
+  position: relative; /* Allows the logo to be positioned absolutely within this container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 100%; /* Ensure container spans the full width */
+}
+
+.logo {
+  position: absolute; /* Position logo absolutely within the container */
+  left: 25%; /* Adjust distance from the left */
+  top: 51%; /* Center vertically */
+  transform: translateY(-50%); /* Center vertically */
+  width: 50px; /* Adjust size as needed */
+  height: auto;
+}
+
+.welcome-text {
+  display: inline-block; /* Ensure background spans full width */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: #3498db;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(45deg, #3498db, #8e44ad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: calc(100% - 80px); /* Ensure text width adjusts for logo */
+  text-align: center;
 }
 
 
-  .box-container{
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-  }
-  
-  h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .box {
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .box {
       width: 150px;
       height: 150px;
       padding: 15px;
-    }
-  
-    h2 {
-      font-size: 16px;
-    }
   }
-  
-  @media (max-width: 576px) {
-    .box {
+
+  h2 {
+      font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .box {
       width: 100px;
       height: 100px;
       padding: 10px;
-    }
-  
-    h2 {
-      font-size: 14px;
-    }
-  
-    .box-container {
-      display: grid;
-      gap: 10px;
-    }
   }
 
+  h2 {
+      font-size: 14px;
+  }
 
-  
+  .box-container {
+      display: grid;
+      gap: 10px;
+  }
+}

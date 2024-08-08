@@ -11,8 +11,12 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     const navigate = useNavigate()
 
+    const navigateHome = () => {
+        navigate("/initial-screen")
+    }
+
     const navigateChat = () => {
-        navigate("/home")
+        navigate("/chat")
     }
 
     const navigateObjDetection = () => {
@@ -51,6 +55,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             {isOpen && (
                 <div className="sidebar-content">
                     <ul>
+                        <li style={{ color: "black" }} onClick={navigateHome}>
+                            <span className="icon chat-icon" />
+                            Home
+                        </li>
                         <li style={{ color: "black" }} onClick={navigateChat}>
                             <span className="icon chat-icon" />
                             Chat

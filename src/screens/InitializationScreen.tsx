@@ -12,25 +12,10 @@ const InitializationScreen: React.FC = () => {
 
     return (
         <div className="initialization-screen">
-            <h1
-                style={{
-                    fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-                    fontSize: "2.4rem",
-                    fontWeight: "bold",
-                    color: "#3498db",
-                    textAlign: "center",
-                    margin: "0",
-                    padding: "20px",
-                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)",
-                    background: "linear-gradient(45deg, #3498db, #8e44ad)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    borderRadius: "10px",
-                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-                }}
-            >
-                Welcome to Qylis Services
-            </h1>
+            <div className="header-container">
+                <img src="qylislogo.png" alt="Logo" className="logo" />
+                <h1 className="welcome-text">Welcome to Qylis Services</h1>
+            </div>
 
             <div className="box-container">
                 <Box title="Chat Bot" onClick={() => handleBoxClick("/chat")} />
