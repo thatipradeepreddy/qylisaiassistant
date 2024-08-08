@@ -72,6 +72,8 @@
     text-align: left;
     word-wrap: break-word;
     align-self: flex-start;
+    display: flex;
+    align-items: center;
 }
 
 .inputContainer {
@@ -147,11 +149,10 @@ h1 {
 
 .speakerIcon {
     color: lightslategrey;
-    font-size: 26px;
+    font-size: 21px;
     margin-left: 2px;
-    /* margin-top: -34px; */
-    margin-bottom: -8px;
     cursor: pointer;
+    margin-bottom: -6px;
 }
 
 
