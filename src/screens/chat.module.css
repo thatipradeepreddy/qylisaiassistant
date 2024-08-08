@@ -111,6 +111,12 @@
     cursor: pointer;
 }
 
+.headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .input {
     padding: 10px 10px 10px 40px; /* Adjust padding to make space for the icon */
     box-sizing: border-box;
@@ -128,9 +134,9 @@
 }
 
 /* Styles for the h1 heading */
-h1 {
+.headerQylis {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 2rem;
+    font-size: 2.4rem;
     font-weight: bold;
     color: #2c3e50;
     text-align: center;
@@ -141,7 +147,7 @@ h1 {
     -webkit-text-fill-color: transparent;
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); */
     top: 0;
     left: 0;
     right: 0;

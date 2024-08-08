@@ -1,4 +1,3 @@
-/* Box styles */
 .box {
   width: 250px;
   height: 250px;
@@ -14,6 +13,8 @@
   justify-content: center;
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-size: cover; /* Ensure the background image covers the container */
+  background-position: center; /* Center the background image */
 }
 
 .box:hover {
@@ -26,11 +27,13 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-h2 {
+.headerSecond {
   font-size: 24px;
-  color: #333;
+  color: darkcyan;
   margin: 0;
   font-weight: 600;
+  margin-top: 80%;
+
 }
 
 /* Responsive styles */
@@ -41,8 +44,9 @@ h2 {
       padding: 15px;
   }
 
-  h2 {
+  .headerSecond {
       font-size: 20px;
+      
   }
 }
 
@@ -53,7 +57,7 @@ h2 {
       padding: 10px;
   }
 
-  h2 {
+  .headerSecond {
       font-size: 16px;
   }
 }

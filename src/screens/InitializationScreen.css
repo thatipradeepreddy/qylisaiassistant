@@ -17,12 +17,12 @@
   text-align: center;
   margin: 0;
   padding: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(45deg, #3498db, #8e44ad);
+  /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); */
+  /* background: linear-gradient(45deg, #3498db, #8e44ad); */
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* -webkit-text-fill-color: transparent; */
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
 }
 
 .box-container {
@@ -32,19 +32,13 @@
 }
 
 .header-container {
-  position: relative; /* Allows the logo to be positioned absolutely within this container */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
   width: 100%; /* Ensure container spans the full width */
 }
 
 .logo {
-  position: absolute; /* Position logo absolutely within the container */
-  left: 25%; /* Adjust distance from the left */
-  top: 51%; /* Center vertically */
-  transform: translateY(-50%); /* Center vertically */
   width: 50px; /* Adjust size as needed */
   height: auto;
 }
@@ -58,13 +52,12 @@
   text-align: center;
   margin: 0;
   padding: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); */
   background: linear-gradient(45deg, #3498db, #8e44ad);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: calc(100% - 80px); /* Ensure text width adjusts for logo */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
   text-align: center;
 }
 

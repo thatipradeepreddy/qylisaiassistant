@@ -239,6 +239,7 @@ export function Chat() {
                         onChange={handleInputChange}
                         className={styles.input}
                         rows={1}
+                        placeholder="Enter Prompt here"
                     />
                     <input
                         type="file"
@@ -275,7 +276,10 @@ export function Chat() {
 
     return (
         <div className={styles.main}>
-            <h1>Qylis AI Assistant</h1>
+            <div className={styles.headerContainer}>
+                <img src="qylislogo.png" alt="Logo" className="logo" />
+                <h1 className={styles.headerQylis}>Qylis AI Assistant</h1>
+            </div>
             <div className={styles.messagesWrapper}>
                 <div className={styles.messagesContainer}>
                     {renderMessages()}

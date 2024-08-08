@@ -91,17 +91,19 @@ label {
     padding: 12px;
     border: none;
     border-radius: 60px;
-    background-color: #ea5501;
+    background: linear-gradient(90deg, #1e3a8a, #ea5501); 
     color: white;
     cursor: pointer;
     font-size: 16px;
     margin-bottom: 20px;
     margin-top: 15px;
+    transition: background 0.3s ease;
 }
 
-button:hover {
-    background-color: #ea5501;
+.button:hover {
+    background: linear-gradient(90deg, #1e3a8a, #ea5501); 
 }
+
 
 .email {
     position: absolute;
