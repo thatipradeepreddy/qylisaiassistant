@@ -88,9 +88,29 @@
     margin-bottom: 10px;
 }
 
+.textareaWrapper {
+    position: relative;
+    flex: 1;
+}
+
+.uploadedFile {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.attachIcon {
+    position: absolute;
+    top: 50%;
+    left: 10px; 
+    transform: translateY(-50%);
+    font-size: 24px; 
+    color: black; 
+    cursor: pointer;
+}
+
 .input {
-    width: 100%;
-    padding: 10px;
+    padding: 10px 10px 10px 40px; /* Adjust padding to make space for the icon */
     box-sizing: border-box;
     border-radius: 20px;
     border: 1px solid #ccc;
@@ -102,6 +122,7 @@
     font-size: 16px;
     line-height: 1.5;
     color: #333;
+    width: 100%;
 }
 
 /* Styles for the h1 heading */

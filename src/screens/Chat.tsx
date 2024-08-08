@@ -3,6 +3,7 @@ import { SlArrowRightCircle, SlPencil, SlMicrophone } from "react-icons/sl"
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition"
 import { HiOutlineSpeakerWave } from "react-icons/hi2"
 import styles from "./chat.module.css"
+import { MdAttachFile } from "react-icons/md"
 
 interface Response {
     trigger: string
@@ -24,6 +25,7 @@ interface Message {
     type: MessageType
     text: string
     id: number
+    fileUrl?: string
 }
 
 export function Chat() {
@@ -31,8 +33,10 @@ export function Chat() {
     const [messages, setMessages] = useState<Message[]>([])
     const [editingMessageId, setEditingMessageId] = useState<number | null>(null)
     const [speakingMessageId, setSpeakingMessageId] = useState<number | null>(null)
+    const [fileInputKey, setFileInputKey] = useState<number>(Date.now())
     const textareaRef = useRef<HTMLTextAreaElement>(null)
     const messagesEndRef = useRef<HTMLDivElement>(null)
+    const fileInputRef = useRef<HTMLInputElement>(null)
 
     const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition()
 
@@ -85,6 +89,23 @@ export function Chat() {
                 <SlMicrophone style={{ fontSize: 26, color: listening ? "red" : "black" }} />
             </div>
         )
+    }
+
+    const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0]
+        if (file) {
+            const reader = new FileReader()
+            reader.onloadend = () => {
+                const newMessage: Message = {
+                    type: "user",
+                    text: file.name,
+                    id: Date.now(),
+                    fileUrl: reader.result as string,
+                }
+                setMessages((prevMessages) => [...prevMessages, newMessage])
+            }
+            reader.readAsDataURL(file)
+        }
     }
 
     const handleSend = async () => {
@@ -179,9 +200,10 @@ export function Chat() {
         return messages.map((msg) => (
             <div key={msg.id} className={msg.type === "user" ? styles.userMessage : styles.botMessage}>
                 {msg.text}
+                {msg.fileUrl && <img src={msg.fileUrl} alt="" className={styles.uploadedFile} />}
                 {msg.type === "bot" && (
                     <span className={styles.speakerIcon} onClick={() => speak(msg.text, msg.id)}>
-                        <HiOutlineSpeakerWave className={styles.speakerIcon} />
+                        <HiOutlineSpeakerWave />
                     </span>
                 )}
                 {msg.type === "user" && (
@@ -208,15 +230,24 @@ export function Chat() {
     const renderInput = () => {
         return (
             <div className={styles.inputContainer}>
-                <textarea
-                    ref={textareaRef}
-                    value={inputData}
-                    onKeyDown={handleKeyDown}
-                    onChange={handleInputChange}
-                    className={styles.input}
-                    rows={1}
-                />
-
+                <div className={styles.textareaWrapper}>
+                    <MdAttachFile className={styles.attachIcon} onClick={() => fileInputRef.current?.click()} />
+                    <textarea
+                        ref={textareaRef}
+                        value={inputData}
+                        onKeyDown={handleKeyDown}
+                        onChange={handleInputChange}
+                        className={styles.input}
+                        rows={1}
+                    />
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        key={fileInputKey}
+                        style={{ display: "none" }}
+                        onChange={handleFileUpload}
+                    />
+                </div>
                 {editingMessageId !== null ? (
                     <div className={styles.editActions}>
                         <button className={styles.cancelButton} onClick={handleCancelEdit}>
