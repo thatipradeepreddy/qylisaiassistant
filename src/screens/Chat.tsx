@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react"
-import { SlArrowRightCircle, SlPencil, SlMicrophone, SlSpeech } from "react-icons/sl"
+import { SlArrowRightCircle, SlPencil, SlMicrophone } from "react-icons/sl"
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition"
 import { HiOutlineSpeakerWave } from "react-icons/hi2"
 import styles from "./chat.module.css"
@@ -34,7 +34,7 @@ export function Chat() {
     const textareaRef = useRef<HTMLTextAreaElement>(null)
     const messagesEndRef = useRef<HTMLDivElement>(null)
 
-    const { transcript, listening, resetTranscript } = useSpeechRecognition()
+    const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition()
 
     useEffect(() => {
         if (textareaRef.current) {
@@ -236,6 +236,10 @@ export function Chat() {
                 )}
             </div>
         )
+    }
+
+    if (!browserSupportsSpeechRecognition) {
+        return <div>Browser does not support speech recognition.</div>
     }
 
     return (
