@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import { SlArrowRightCircle, SlPencil, SlMicrophone, SlSpeech } from "react-icons/sl"
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition"
+import { HiOutlineSpeakerWave } from "react-icons/hi2"
 import styles from "./chat.module.css"
 
 interface Response {
@@ -29,6 +30,7 @@ export function Chat() {
     const [inputData, setInputData] = useState<string>("")
     const [messages, setMessages] = useState<Message[]>([])
     const [editingMessageId, setEditingMessageId] = useState<number | null>(null)
+    const [speakingMessageId, setSpeakingMessageId] = useState<number | null>(null)
     const textareaRef = useRef<HTMLTextAreaElement>(null)
     const messagesEndRef = useRef<HTMLDivElement>(null)
 
@@ -95,6 +97,7 @@ export function Chat() {
         }
 
         setMessages((prevMessages) => [...prevMessages, newMessage])
+        setInputData("")
 
         if (editingMessageId !== null) {
             const updatedMessages = messages.map((msg) => (msg.id === editingMessageId ? { ...msg, text: inputData } : msg))
@@ -102,7 +105,7 @@ export function Chat() {
             setEditingMessageId(null)
         } else {
             try {
-                const response = await fetch("http://192.168.68.62:5000/mistral", {
+                const response = await fetch("", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -164,8 +167,11 @@ export function Chat() {
         setEditingMessageId(null)
     }
 
-    const speak = (text: string) => {
+    const speak = (text: string, id: number) => {
+        window.speechSynthesis.cancel()
         const utterance = new SpeechSynthesisUtterance(text)
+        utterance.onstart = () => setSpeakingMessageId(id)
+        utterance.onend = () => setSpeakingMessageId(null)
         window.speechSynthesis.speak(utterance)
     }
 
@@ -174,8 +180,8 @@ export function Chat() {
             <div key={msg.id} className={msg.type === "user" ? styles.userMessage : styles.botMessage}>
                 {msg.text}
                 {msg.type === "bot" && (
-                    <span className={styles.speakerIcon} onClick={() => speak(msg.text)}>
-                        <SlSpeech style={{ fontSize: 20, color: "black", marginLeft: 10 }} />
+                    <span className={styles.speakerIcon} onClick={() => speak(msg.text, msg.id)}>
+                        <HiOutlineSpeakerWave className={styles.speakerIcon} />
                     </span>
                 )}
                 {msg.type === "user" && (
@@ -188,8 +194,8 @@ export function Chat() {
                     >
                         <SlPencil
                             style={{
-                                fontSize: 17,
-                                color: "#007bff",
+                                fontSize: 16,
+                                color: "lightslategrey",
                                 marginBottom: -3.5,
                             }}
                         />

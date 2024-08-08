@@ -52,7 +52,7 @@
 }
 
 .userMessage {
-    background-color: #DCF8C6;
+    background-color: #F1F0F0;
     border-radius: 15px;
     padding: 10px 15px;
     margin: 5px 0;
@@ -122,6 +122,15 @@ h1 {
     top: 0;
     left: 0;
     right: 0;
+}
+
+.speakerIcon {
+    color: lightslategrey;
+    font-size: 26px;
+    margin-left: 2px;
+    /* margin-top: -34px; */
+    margin-bottom: -8px;
+    cursor: pointer;
 }
 
 

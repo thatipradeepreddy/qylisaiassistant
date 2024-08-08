@@ -19,7 +19,7 @@ const darkTheme = createTheme({
     },
 })
 
-const API_URL = "http://localhost:5000"
+const API_URL = "http://localhost:9000"
 
 export function ObjectDetection() {
     const [tab, setTab] = useState(0)
