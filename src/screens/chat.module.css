@@ -80,13 +80,12 @@ body {
 /* Welcome message styles */
 .welcomeMessage {
     width: 70%;
-    margin-left: 20%;
+    margin-left: 15%; /* Centered better */
     margin-top: 7%;
 }
 
-
 .greeting {
-    margin-right: 45%;
+    margin-right: 0; /* Adjusted for better alignment */
     font-size: 40px; /* Adjust as needed for "large" */
     font-weight: bold; /* Optional, makes the text bolder */
     background: linear-gradient(45deg, rgba(9, 128, 248, 0.5), rgba(255, 43, 71, 0.6)); /* Gradient from blue to orange with higher opacity */
@@ -96,11 +95,9 @@ body {
     text-fill-color: transparent;
     margin-top: 20px;
     white-space: pre-wrap;
-
 }
 
 .question {
-    /* margin-right: 30%; */
     font-size: 40px; /* Adjust as needed for "large" */
     font-weight: bold; /* Optional, makes the text bolder */
     background: linear-gradient(45deg, rgba(9, 128, 248, 0.3), rgba(255, 75, 43, 0.3)); /* Gradient from blue to orange with higher opacity */
@@ -255,7 +252,7 @@ body {
 /* Responsive styles */
 @media (max-width: 768px) {
     .headerQylis {
-        font-size: 1.2rem;
+        font-size: 1.5rem; /* Adjusted for medium screens */
     }
 
     .messagesContainer {
@@ -279,21 +276,20 @@ body {
         font-size: 22px;
     }
 
-    .speakIcon {
+    .speakerIcon {
         font-size: 18px;
     }
 
     .welcomeMessage {
         font-size: 30px; /* Adjust for smaller screens */
-        white-space: pre-wrap;
-        text-align: left; /* Align text to the left */
-        margin-top: 15px; /* Adjust top margin */
+        margin-left: 10%;
+        text-align: center; /* Center text for better alignment */
     }
 }
 
 @media (max-width: 480px) {
     .headerQylis {
-        font-size: 1rem;
+        font-size: 1.2rem; /* Further reduced for small screens */
     }
 
     .input {
@@ -309,14 +305,13 @@ body {
         font-size: 20px;
     }
 
-    .speakIcon {
+    .speakerIcon {
         font-size: 16px;
     }
 
     .welcomeMessage {
         font-size: 24px; /* Further adjust for very small screens */
-        white-space: pre-wrap;
-        text-align: left; /* Align text to the left */
-        margin-top: 10px; /* Adjust top margin */
+        margin-left: 5%; /* Better alignment for small screens */
+        text-align: center; /* Center text for better alignment */
     }
 }
