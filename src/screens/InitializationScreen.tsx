@@ -20,7 +20,7 @@ const InitializationScreen: React.FC = () => {
             <div className="box-container">
                 <Box
                     backgroundImage="https://media.istockphoto.com/id/1488335095/vector/3d-vector-robot-chatbot-ai-in-science-and-business-technology-and-engineering-concept.jpg?s=612x612&w=0&k=20&c=MSxiR6V1gROmrUBe1GpylDXs0D5CHT-mn0Up8D50mr8="
-                    title="QylisChat"
+                    title="Qylis Chat"
                     onClick={() => handleBoxClick("/chat")}
                 />
                 <Box
