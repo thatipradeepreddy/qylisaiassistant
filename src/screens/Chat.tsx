@@ -34,6 +34,8 @@ export function Chat() {
     const [editingMessageId, setEditingMessageId] = useState<number | null>(null)
     const [speakingMessageId, setSpeakingMessageId] = useState<number | null>(null)
     const [fileInputKey, setFileInputKey] = useState<number>(Date.now())
+    const [showWelcomeMessage, setShowWelcomeMessage] = useState<boolean>(true)
+
     const textareaRef = useRef<HTMLTextAreaElement>(null)
     const messagesEndRef = useRef<HTMLDivElement>(null)
     const fileInputRef = useRef<HTMLInputElement>(null)
@@ -110,6 +112,8 @@ export function Chat() {
 
     const handleSend = async () => {
         if (inputData.trim() === "") return
+
+        setShowWelcomeMessage(false) // Hide welcome message when sending the first message
 
         const newMessage: Message = {
             type: "user",
@@ -283,6 +287,12 @@ export function Chat() {
             </div>
             <div className={styles.messagesWrapper}>
                 <div className={styles.messagesContainer}>
+                    {showWelcomeMessage && messages.length === 0 && (
+                        <div className={styles.welcomeMessage}>
+                           <div className={styles.greeting}>{"Hello, Thati."}</div>
+                           <div className={styles.question}>{"How can I help you today?"}</div>
+                        </div>
+                    )}
                     {renderMessages()}
                     <div ref={messagesEndRef} />
                 </div>

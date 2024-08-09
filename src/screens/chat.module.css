@@ -23,19 +23,19 @@ body {
 
 .headerQylis {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 2.4rem;
+    font-size: 3rem;
     font-weight: bold;
     color: #2c3e50;
     text-align: center;
     margin: 0;
     padding: 20px;
-    background: linear-gradient(90deg, #3498db, #8e44ad);
+    background: linear-gradient(45deg, rgba(9, 128, 248, 0.9), rgba(255, 75, 43, 0.9)); /* Gradient from blue to orange with higher opacity */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     /* Ensure the text scales down on smaller screens */
-    font-size: 1.5rem;
+    font-size: 2.4rem;
 }
 
 /* Messages container styles */
@@ -75,6 +75,41 @@ body {
 
 .messagesContainer::-webkit-scrollbar-thumb:hover {
     background-color: #555;
+}
+
+/* Welcome message styles */
+.welcomeMessage {
+    width: 70%;
+    margin-left: 20%;
+    margin-top: 7%;
+}
+
+
+.greeting {
+    margin-right: 45%;
+    font-size: 40px; /* Adjust as needed for "large" */
+    font-weight: bold; /* Optional, makes the text bolder */
+    background: linear-gradient(45deg, rgba(9, 128, 248, 0.5), rgba(255, 43, 71, 0.6)); /* Gradient from blue to orange with higher opacity */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    margin-top: 20px;
+    white-space: pre-wrap;
+
+}
+
+.question {
+    /* margin-right: 30%; */
+    font-size: 40px; /* Adjust as needed for "large" */
+    font-weight: bold; /* Optional, makes the text bolder */
+    background: linear-gradient(45deg, rgba(9, 128, 248, 0.3), rgba(255, 75, 43, 0.3)); /* Gradient from blue to orange with higher opacity */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    margin-top: 20px;
+    white-space: pre-wrap;
 }
 
 /* Scrollbar styles for Firefox */
@@ -247,6 +282,13 @@ body {
     .speakIcon {
         font-size: 18px;
     }
+
+    .welcomeMessage {
+        font-size: 30px; /* Adjust for smaller screens */
+        white-space: pre-wrap;
+        text-align: left; /* Align text to the left */
+        margin-top: 15px; /* Adjust top margin */
+    }
 }
 
 @media (max-width: 480px) {
@@ -269,5 +311,12 @@ body {
 
     .speakIcon {
         font-size: 16px;
+    }
+
+    .welcomeMessage {
+        font-size: 24px; /* Further adjust for very small screens */
+        white-space: pre-wrap;
+        text-align: left; /* Align text to the left */
+        margin-top: 10px; /* Adjust top margin */
     }
 }
