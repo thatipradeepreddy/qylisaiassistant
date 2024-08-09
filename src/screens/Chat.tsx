@@ -130,7 +130,7 @@ export function Chat() {
             setEditingMessageId(null)
         } else {
             try {
-                const response = await fetch("http://192.168.68.80:5000/llama", {
+                const response = await fetch("http://192.168.68.74:5000/mistral", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
