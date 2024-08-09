@@ -24,7 +24,7 @@ const darkTheme = createTheme({
     },
 })
 
-const API_URL = "http://localhost:9000"
+const API_URL = "http://192.168.68.69:9000"
 
 export function ObjectDetection() {
     const [tab, setTab] = useState(0)
@@ -214,16 +214,19 @@ export function ObjectDetection() {
                                 <FormControlLabel
                                     control={<Switch checked={enabledModels.asl} onChange={() => handleModelToggle("asl")} />}
                                     label="American Sign Language"
+                                    sx={{ color: "white" }}
                                 />
                                 <FormControlLabel
                                     control={<Switch checked={enabledModels.thumb} onChange={() => handleModelToggle("thumb")} />}
                                     label="Thumb Gestures"
+                                    sx={{ color: "white" }}
                                 />
                                 <FormControlLabel
                                     control={
                                         <Switch checked={enabledModels.objects} onChange={() => handleModelToggle("objects")} />
                                     }
                                     label="Everyday Objects"
+                                    sx={{ color: "white" }}
                                 />
                             </FormGroup>
                         </Grid>
